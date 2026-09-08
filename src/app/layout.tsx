@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jubilee of Wellness",
-  description: "Jubilee of Wellness",
+  title: "Ready to Roll! | Jubilee of Wellness",
+  description:
+    "Join the waitlist for Ready to Roll!, a monthly essential oil roller subscription from Jubilee of Wellness.",
 };
 
 export default function RootLayout({
