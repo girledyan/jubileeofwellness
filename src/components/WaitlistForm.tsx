@@ -4,6 +4,17 @@ import { useState, type FormEvent } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+// Klaviyo's public API key ("Company ID") is meant to be used from the
+// browser — it's the same value used by Klaviyo's own embedded forms —
+// so it's safe to ship in client-side code.
+const KLAVIYO_COMPANY_ID = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID;
+const KLAVIYO_LIST_ID = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID;
+
+function splitName(fullName: string) {
+  const [firstName, ...rest] = fullName.trim().split(/\s+/);
+  return { firstName: firstName ?? "", lastName: rest.join(" ") };
+}
+
 export function WaitlistForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,19 +23,57 @@ export function WaitlistForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!KLAVIYO_COMPANY_ID || !KLAVIYO_LIST_ID) {
+      setError("Signups aren't configured yet. Please try again later.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
     setError(null);
 
+    const { firstName, lastName } = splitName(name);
+
     try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
-      });
-      const data = await res.json();
+      const res = await fetch(
+        `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            revision: "2024-10-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email,
+                      first_name: firstName,
+                      ...(lastName ? { last_name: lastName } : {}),
+                    },
+                  },
+                },
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: "list",
+                    id: KLAVIYO_LIST_ID,
+                  },
+                },
+              },
+            },
+          }),
+        },
+      );
 
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
+        setError("Something went wrong. Please try again.");
         setStatus("error");
         return;
       }
