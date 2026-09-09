@@ -4,27 +4,46 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 const monthlyOils = [
   {
     name: "Sweet Orange",
+    image: "/products/sweet-orange.png",
     note: "Bright, uplifting, and easy to love — a gentle welcome to your ritual.",
   },
   {
     name: "Herbal Guardian",
+    image: "/products/herbal-guardian.png",
     note: "A grounding herbal blend for when the day feels like a lot.",
   },
   {
     name: "Lavender",
+    image: "/products/lavender.png",
     note: "The classic calm-down oil, for wind-down evenings and easier sleep.",
   },
   {
     name: "Rose Hydrosol",
+    image: "/products/rose-hydrosol.png",
     note: "Soft, floral, and a little indulgent — a reminder to be gentle with yourself.",
   },
 ];
+
+// Soft blurred color washes used to give the flat brand-light sections some
+// depth. Purely decorative — hidden from assistive tech, never interactive.
+function Blob({ className }: { className: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none absolute -z-10 rounded-full blur-3xl ${className}`}
+    />
+  );
+}
 
 export default function HomePage() {
   return (
     <main className="bg-brand-light">
       {/* Hero */}
-      <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pb-16 pt-20 text-center">
+      <section className="relative isolate mx-auto flex max-w-3xl flex-col items-center gap-6 overflow-hidden px-6 pb-16 pt-20 text-center">
+        <Blob className="-left-24 -top-24 h-72 w-72 bg-brand/25" />
+        <Blob className="-right-16 top-10 h-56 w-56 bg-brand-green/30" />
+        <Blob className="bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 bg-brand/10" />
+
         <Image
           src="/jubilee_logo_transparent.png"
           alt="Jubilee"
@@ -62,7 +81,10 @@ export default function HomePage() {
       </section>
 
       {/* What's in the box */}
-      <section className="px-6 py-16">
+      <section className="relative isolate overflow-hidden px-6 py-16">
+        <Blob className="-right-20 top-1/3 h-72 w-72 bg-brand-green/25" />
+        <Blob className="-left-16 bottom-0 h-56 w-56 bg-brand/15" />
+
         <div className="mx-auto max-w-4xl">
           <h2 className="text-center text-2xl font-semibold text-brand-dark">
             What&rsquo;s in every box
@@ -115,26 +137,33 @@ export default function HomePage() {
 
       {/* Monthly theme preview */}
       <section className="border-y border-brand/10 bg-white px-6 py-16">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <h2 className="text-2xl font-semibold text-brand-dark">
             A new oil to explore, every month
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-brand-dark/70">
             Here&rsquo;s a peek at what&rsquo;s coming in our first few boxes.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {monthlyOils.map((oil, i) => (
               <div
                 key={oil.name}
-                className="flex items-start gap-4 rounded-2xl bg-brand-light p-5 text-left"
+                className="flex flex-col overflow-hidden rounded-2xl bg-brand-light p-3 text-left shadow-sm"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
-                  {i + 1}
-                </span>
-                <div>
-                  <p className="font-semibold text-brand-dark">{oil.name}</p>
-                  <p className="mt-1 text-sm text-brand-dark/70">{oil.note}</p>
+                <div className="overflow-hidden rounded-xl">
+                  <Image
+                    src={oil.image}
+                    alt={`${oil.name} essential oil roller from Jubilee`}
+                    width={1024}
+                    height={1536}
+                    className="aspect-[2/3] w-full object-cover"
+                  />
                 </div>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-brand">
+                  Month {i + 1}
+                </p>
+                <p className="font-semibold text-brand-dark">{oil.name}</p>
+                <p className="mt-1 text-sm text-brand-dark/70">{oil.note}</p>
               </div>
             ))}
           </div>
@@ -145,7 +174,9 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section className="px-6 py-16">
+      <section className="relative isolate overflow-hidden px-6 py-16">
+        <Blob className="left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 bg-brand/15" />
+
         <div className="mx-auto max-w-md rounded-3xl bg-white p-8 text-center shadow-sm">
           <p className="text-sm font-medium uppercase tracking-wide text-brand">
             Ready to Roll!
@@ -160,7 +191,10 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="border-t border-brand/10 bg-white px-6 py-16">
+      <section className="relative isolate overflow-hidden border-t border-brand/10 bg-white px-6 py-16">
+        <Blob className="-bottom-20 -left-16 h-72 w-72 bg-brand-green/20" />
+        <Blob className="-top-16 -right-16 h-56 w-56 bg-brand/15" />
+
         <div className="mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
           <h2 className="text-2xl font-semibold text-brand-dark">
             Be first to roll with us
