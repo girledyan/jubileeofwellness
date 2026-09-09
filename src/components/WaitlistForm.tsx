@@ -33,6 +33,13 @@ export function WaitlistForm() {
     setStatus("loading");
     setError(null);
 
+    // Open the confirmation tab synchronously, inside the click handler, so
+    // browsers treat it as a direct result of the user's click rather than
+    // an unrequested popup — an open triggered after the awaited fetch below
+    // would get blocked. We point it at /thank-you only once signup actually
+    // succeeds, and close it again if signup fails.
+    const confirmationTab = window.open("", "_blank");
+
     const { firstName, lastName } = splitName(name);
 
     try {
@@ -73,13 +80,18 @@ export function WaitlistForm() {
       );
 
       if (!res.ok) {
+        confirmationTab?.close();
         setError("Something went wrong. Please try again.");
         setStatus("error");
         return;
       }
 
+      if (confirmationTab) {
+        confirmationTab.location.href = "/thank-you";
+      }
       setStatus("success");
     } catch {
+      confirmationTab?.close();
       setError("Something went wrong. Please try again.");
       setStatus("error");
     }
