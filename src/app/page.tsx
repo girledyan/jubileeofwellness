@@ -39,30 +39,32 @@ export default function HomePage() {
   return (
     <main className="bg-brand-light">
       {/* Hero */}
-      <section className="relative isolate mx-auto flex max-w-3xl flex-col items-center gap-6 overflow-hidden px-6 pb-16 pt-20 text-center">
+      <section className="relative isolate overflow-hidden">
         <Blob className="-left-24 -top-24 h-72 w-72 bg-brand/25" />
         <Blob className="-right-16 top-10 h-56 w-56 bg-brand-green/30" />
         <Blob className="bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 bg-brand/10" />
 
-        <Image
-          src="/jubilee_logo_transparent.png"
-          alt="Jubilee"
-          width={2881}
-          height={1010}
-          priority
-          className="h-auto w-56 sm:w-64"
-        />
-        <h1 className="text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
-          Ready to Roll! 🌿
-        </h1>
-        <p className="max-w-xl text-lg text-brand-dark/80">
-          A monthly essential oil roller subscription, made for mental wellness
-          relief and everyday joy — one oil, one ritual, delivered to your door.
-        </p>
-        <WaitlistForm />
-        <p className="text-sm font-medium text-brand-dark/60">
-          Launching November 1st &mdash; join the waitlist for founding-member perks.
-        </p>
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pb-16 pt-20 text-center">
+          <Image
+            src="/jubilee_logo_transparent.png"
+            alt="Jubilee"
+            width={2881}
+            height={1010}
+            priority
+            className="h-auto w-56 sm:w-64"
+          />
+          <h1 className="text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
+            Ready to Roll! 🌿
+          </h1>
+          <p className="max-w-xl text-lg text-brand-dark/80">
+            A monthly essential oil roller subscription, made for mental wellness
+            relief and everyday joy — one oil, one ritual, delivered to your door.
+          </p>
+          <WaitlistForm />
+          <p className="text-sm font-medium text-brand-dark/60">
+            Launching November 1st &mdash; join the waitlist for founding-member perks.
+          </p>
+        </div>
       </section>
 
       {/* Problem */}
