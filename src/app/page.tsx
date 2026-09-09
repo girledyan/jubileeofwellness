@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
 const monthlyOils = [
@@ -24,9 +25,14 @@ export default function HomePage() {
     <main className="bg-brand-light">
       {/* Hero */}
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 pb-16 pt-20 text-center">
-        <span className="rounded-full bg-white px-4 py-1 text-sm font-medium text-brand shadow-sm">
-          Jubilee of Wellness
-        </span>
+        <Image
+          src="/jubilee_logo_transparent.png"
+          alt="Jubilee"
+          width={2881}
+          height={1010}
+          priority
+          className="h-auto w-56 sm:w-64"
+        />
         <h1 className="text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
           Ready to Roll! 🌿
         </h1>
