@@ -22,7 +22,7 @@ Rebuilt from https://shopsleepnaturallynow.com/pages/landingpage (the Shopify "S
 ## Before going live
 
 1. In each GHL section, set the width to **Full Width** and the padding to **0**. The code adds its own spacing.
-2. **Images:** they still load from the Shopify store. Upload them to GHL **Media Storage** and swap each `src` URL. Otherwise they break if the Shopify store closes.
+2. **Images:** they still load from the Shopify store. Upload them to GHL **Media Storage** and swap each `src` URL. Otherwise they break if the Shopify store closes. Upload the **original full-size files**, not screenshots or downloads from the live page, and keep each image's `srcset` pointing at full-size versions too (or remove `srcset` and `sizes` so only `src` is used). Otherwise they look blurry.
 3. **Buttons** link to `shopsleepnaturallynow.com/pages/resources`. Change them to your GHL opt-in page.
 4. **Newsletter:** the Shopify form can't work in GHL. Paste the embed code from a GHL form (Sites → Forms → Integrate) where the comment says.
 5. Left out on purpose: the Shopify menu, search, account and cart icons.
