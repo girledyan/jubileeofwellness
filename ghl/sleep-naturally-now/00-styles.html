@@ -1,0 +1,151 @@
+<!-- ===== BLOCK 0: SHARED STYLES =====
+     Paste into a Custom HTML/Javascript element at the TOP of the page.
+     Every other block depends on it. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  .snn {
+    --snn-ink: #2e2a39;
+    --snn-text: rgba(46, 42, 57, 0.75);
+    --snn-cream: #fdfbf7;
+    --snn-green: #057663;
+    --snn-bg-warm: linear-gradient(180deg, #faf5e9, #f1ebe2);
+    --snn-bg-cream: linear-gradient(65deg, #fdfbf7 13%, #f1ebe2 100%);
+    --snn-bg-plum: linear-gradient(320deg, #86106a, #5e3653);
+    width: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.6px;
+    color: var(--snn-text);
+  }
+  .snn *, .snn *::before, .snn *::after { box-sizing: border-box; }
+  .snn img { display: block; max-width: 100%; height: auto; border: 0; }
+  .snn p { margin: 0; }
+  .snn h1, .snn h2, .snn h3 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.6px;
+    color: var(--snn-ink);
+  }
+  .snn .snn-h1 { font-size: 36px; }
+  .snn h3 { font-size: 20px; }
+  .snn strong { font-weight: 700; }
+
+  .snn-wrap { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+  .snn .snn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background: var(--snn-green);
+    color: var(--snn-cream);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease;
+  }
+  .snn .snn-btn:hover,
+  .snn .snn-btn:focus-visible {
+    color: var(--snn-cream);
+    box-shadow: 0 0 0 2px var(--snn-cream), 0 0 0 4px var(--snn-green);
+  }
+
+  /* Header */
+  .snn-announce {
+    padding: 10px 15px;
+    background: var(--snn-cream);
+    border-bottom: 1px solid rgba(46, 42, 57, 0.08);
+    text-align: center;
+    font-size: 14px;
+    color: var(--snn-ink);
+  }
+  .snn-header {
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px;
+    background: var(--snn-bg-cream);
+    border-bottom: 1px solid rgba(46, 42, 57, 0.08);
+  }
+  .snn-header img { width: 200px; max-width: 50vw; }
+
+  /* Hero */
+  .snn-hero { position: relative; background: var(--snn-bg-warm); }
+  .snn-hero__media img { width: 100%; }
+  .snn-hero__content { padding: 25px 15px 30px; }
+
+  /* Image with text */
+  .snn-iwt { padding: 27px 0; background: var(--snn-bg-warm); }
+  .snn-iwt__grid { display: grid; grid-template-columns: 1fr; }
+  .snn-iwt__media img { width: 100%; border-radius: 12px; }
+  .snn-iwt__text { padding: 30px 0 0; }
+  .snn-iwt__text h3 { margin: 20px 0 12px; }
+  .snn-iwt__text p { margin-bottom: 30px; }
+
+  /* Full-width image banners */
+  .snn-banner img { width: 100%; }
+
+  /* Testimonials */
+  .snn-testi { padding: 27px 0; background: var(--snn-bg-cream); }
+  .snn-testi__title { margin-bottom: 30px; }
+  .snn-testi__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .snn-testi__grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; }
+
+  /* Newsletter */
+  .snn-news {
+    padding: 30px 15px 39px;
+    background: var(--snn-bg-plum);
+    text-align: center;
+    color: var(--snn-cream);
+  }
+  .snn-news h2 { color: var(--snn-cream); }
+  .snn-news__sub { margin-top: 15px; }
+  .snn-news__form { max-width: 500px; margin: 25px auto 0; }
+
+  @media (min-width: 750px) {
+    .snn { font-size: 16px; }
+    .snn .snn-h1 { font-size: 48px; }
+    .snn h3 { font-size: 22px; }
+    .snn-wrap { padding: 0 50px; }
+    .snn-header { padding: 20px 50px; }
+
+    .snn-hero { background: none; }
+    .snn-hero__content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px;
+    }
+
+    .snn-iwt { padding: 36px 0; }
+    .snn-iwt__grid { grid-template-columns: 1fr 1fr; align-items: start; }
+    .snn-iwt__text { padding: 40px 0 50px 70px; }
+
+    .snn-testi { padding: 36px 0; }
+    .snn-news { padding: 40px 50px 52px; }
+  }
+
+  @media (min-width: 990px) {
+    .snn-testi__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+</style>
